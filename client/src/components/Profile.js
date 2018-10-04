@@ -13,8 +13,6 @@ import Dropzone from 'react-dropzone'
 import { updateUser } from '../reducers/user'
 import Tags from './Tags'
 
-const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png'
-
 class Profile extends React.Component {
   state = { 
     editing: false, 
@@ -117,7 +115,7 @@ class Profile extends React.Component {
     return (
       <>
         <Grid.Column width={4}>
-          <Image src={user.image || defaultImage} alt="user avatar" />
+          <Image src={user.image} alt="user avatar" />
         </Grid.Column>
         <Grid.Column width={8}>
           <Header as="h1">{user.name}</Header>

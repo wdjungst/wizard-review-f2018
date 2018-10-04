@@ -7,15 +7,13 @@ import {
 } from 'semantic-ui-react'
 import { getLikeUsers } from '../reducers/likeUsers'
 
-const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png'
-
 class LikeUsers extends React.Component {
   componentDidMount() {
     this.reload()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.likeUsers !== this.props.likeUsers)
+  componentDidUpdate(prevProps) {
+    if (prevProps.tags !== this.props.tags)
       this.reload()
   }
 
@@ -27,14 +25,14 @@ class LikeUsers extends React.Component {
     return (
       <Card.Group itemsPerRow={4} stackable>
         { this.props.likeUsers.map( user => {
-            const { id, name, image, tags } = user
+            const { id, user_name, image, tags } = user
             return (
               <Card key={id}>
                 <Image 
-                  src={image || defaultImage}
+                  src={image}
                   alt="user avatar"
                 />
-                <Card.Header>{name}</Card.Header>
+                <Card.Header>{user_name}</Card.Header>
                 <Card.Description>
                   <List divided horizontal>
                     { tags.map( tag =>

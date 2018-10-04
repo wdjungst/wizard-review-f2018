@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_03_162535) do
+ActiveRecord::Schema.define(version: 2018_10_03_195851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_10_03_162535) do
     t.string "unconfirmed_email"
     t.string "name"
     t.string "nickname"
-    t.string "image"
+    t.string "image", default: "https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png"
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false

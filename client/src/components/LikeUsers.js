@@ -6,6 +6,7 @@ import {
   Image,
 } from 'semantic-ui-react'
 import { getLikeUsers } from '../reducers/likeUsers'
+import TagList from './TagList'
 
 class LikeUsers extends React.Component {
   componentDidMount() {
@@ -34,14 +35,7 @@ class LikeUsers extends React.Component {
                 />
                 <Card.Header>{user_name}</Card.Header>
                 <Card.Description>
-                  <List divided horizontal>
-                    { tags.map( tag =>
-                        <List.Item key={tag.id}>
-                          #{tag.name}
-                        </List.Item>
-                      )
-                    }
-                  </List>
+                  <TagList tags={tags} />
                 </Card.Description>
               </Card>
             )

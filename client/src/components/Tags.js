@@ -8,14 +8,19 @@ import { connect } from 'react-redux'
 import { getTags, deleteTag } from '../reducers/tags'
 import TagForm from './TagForm'
 import LikeUsers from './LikeUsers'
+import TagList from './TagList'
 
 class Tags extends React.Component {
   componentDidMount() {
     this.props.dispatch(getTags())
   }
 
+  removeTag = (id) => {
+    this.props.dispatch(deleteTag(id))
+  }
+
   render() {
-    const { tags, dispatch } = this.props
+    const { tags } = this.props
 
     return (
       <Container>
@@ -23,29 +28,7 @@ class Tags extends React.Component {
         { tags.length > 0 &&
             <>
               <Header as="h3" textAlign="center">Tags</Header>
-              <List divided horizontal>
-                { tags.map( tag => {
-                    const { id, name } = tag
-                    return (
-                      <List.Item 
-                        key={id} 
-                        style={{ backgroundColor: 'aliceblue' }}
-                      >
-                        <List.Icon 
-                          name="cancel" 
-                          style={{ cursor: 'pointer' }}
-                          onClick={ () => dispatch(deleteTag(id)) }
-                        />
-                        <List.Content>
-                          <List.Header>
-                            #{name}
-                          </List.Header>
-                        </List.Content>
-                      </List.Item>
-                    )
-                  })
-                }
-              </List>
+              <TagList tags={tags} myTags={true} deleteTag={this.removeTag} />
             </>
         }
         <LikeUsers />
